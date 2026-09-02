@@ -1,0 +1,25 @@
+systemctl show ollama --property=Environment | sed 's/^Environment=//' | tr ' ' '\n'
+systemctl cat ollama | grep -i OLLAMA_MAX_LOADED_MODELS
+
+OLLAMA_HOST=0.0.0.0
+OLLAMA_MAX_LOADED_MODELS=4
+OLLAMA_KEEP_ALIVE=2h
+OLLAMA_NUM_PARALLEL=4
+
+
+
+ollama rm model
+ollama pull
+ollama stop
+ollama ps
+
+
+sudo nano /etc/systemd/system/ollama.service
+
+Environment="OLLAMA_MAX_LOADED_MODELS=4"
+OLLAMA_HOST=0.0.0.0
+OLLAMA_MAX_LOADED_MODELS=4
+OLLAMA_KEEP_ALIVE=2h
+OLLAMA_NUM_PARALLEL=4
+
+sudo systemctl daemon-reload && sudo systemctl restart ollama && systemctl show ollama --property=Environment

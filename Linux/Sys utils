@@ -1,0 +1,14 @@
+mc
+top
+toph
+nvidia-smi
+free -h
+fd
+
+
+sed + tr
+systemctl show ollama --property=Environment | sed 's/^Environment=//' | tr ' ' '\n'
+
+grep -i Environment /etc/systemd/system/ollama.service
+
+watch
