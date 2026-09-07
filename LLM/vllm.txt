@@ -1,0 +1,30 @@
+ 
+cd ~/Engines/vllm
+source ~/vllm_env/bin/activate
+
+
+ docker pull vllm/vllm-openai:deepseekv4-cu1307
+
+
+ tail -n 200 ~/vllm_env/vllm.log
+journalctl --user -u vllm -e
+tail -n 200 ~/.bash_history
+
+sudo dmesg | grep -i kill
+sudo journalctl -k | grep -i oom
+Out of memory: Kill process 24837 (python3)
+
+sudo dmesg | grep -i cuda
+sudo dmesg | grep -i nvrm
+
+sudo journalctl -k | grep -i nccl
+grep -i error ~/.cache/vllm/* -R
+
+watch -n 1 nvidia-smi
+
+sudo journalctl -k | grep -i "Unified Memory"
+
+ls ~/.cache/vllm/compile_cache
+ls ~/.cache/vllm/logs
+
+ 

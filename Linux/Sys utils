@@ -1,6 +1,5 @@
 mc
 top
-toph
 nvidia-smi
 free -h
 fd
@@ -12,3 +11,28 @@ systemctl show ollama --property=Environment | sed 's/^Environment=//' | tr ' ' 
 grep -i Environment /etc/systemd/system/ollama.service
 
 watch
+
+watch -n 1 nvidia-smi
+watch -n 1 free -h
+
+
+ssh robi@192.168.178.200 -t htop
+ssh robi@192.168.178.200 "mpstat -P ALL 1 3"
+
+For a longer historical view without babysitting a terminal, sar -P ALL 5 60 logs 60 samples every 5s and can be reviewed afterward with sar -f /var/log/sysstat/saXX -P ALL.
+
+
+sudo systemctl set-default graphical.target
+sudo systemctl set-default multi-user.target
+
+journalctl -u ollama
+
+
+
+curl http://localhost:8000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+        "model": "/home/robi/models/DeepSeek-V4-Flash-FP8",
+        "messages": [{"role": "user", "content": "Say hello"}],
+        "max_tokens": 32
+      }'

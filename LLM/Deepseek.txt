@@ -1,0 +1,11 @@
+vllm serve /home/robi/models/DeepSeek-V4-Flash-nvfp4-DSpark \
+  --tokenizer-mode deepseek_v4 \
+  --tool-call-parser deepseek_v4 \
+  --reasoning-parser deepseek_v4 \
+  --kv-cache-dtype nvfp4 \
+  --dtype auto \
+  --max-model-len 32768 \
+  --block-size 64 \
+  --gpu-memory-utilization 0.70 \
+  --host 0.0.0.0 \
+  --port 8000

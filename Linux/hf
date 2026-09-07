@@ -1,0 +1,11 @@
+pip install -U "huggingface_hub[cli]"
+
+export HF_TOKEN=YOUR_HF_TOKEN_HERE
+
+source hf-env/bin/activate
+
+hf download Qwen/Qwen3.8-Flash-Next-FP8   --local-dir ~/Models/Qwen3.8-Flash-Next-FP8
+
+    hf download unsloth/Qwen3.8-Flash-Next-GGUF \
+    --local-dir ~/models/Qwen3.8-Flash-Next-GGFF \
+    --include "*UD-Q3*"
